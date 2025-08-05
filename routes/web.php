@@ -10,3 +10,9 @@ Route::get('/', function () {
 
 Route::get('/exemplo', [ExemploController::class, 'index']);
 Route::get('/contato', [ContactController::class, 'index']);
+
+Route::post(
+    '/contato-salvar',
+    [ContactController::class, 'storeDataEncrypt']
+)->name('contato.salvar');
+
