@@ -1,61 +1,153 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📘 Tutorial - Rodando o Projeto LaravelGuairaca  
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este guia vai te ensinar a rodar o projeto **LaravelGuairaca** do zero no seu computador, usando **XAMPP**.  
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🔧 O que você precisa instalar antes  
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Antes de começar, instale os seguintes programas:  
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. **XAMPP** (com PHP 8.1 ou superior e MySQL) → [Baixar aqui](https://www.apachefriends.org/pt_br/index.html)  
+2. **Composer** (gerenciador de dependências PHP) → [Baixar aqui](https://getcomposer.org/)  
+3. **Node.js** (já vem com NPM incluso) → [Baixar aqui](https://nodejs.org/)  
+4. **Git** (para clonar o projeto) → [Baixar aqui](https://git-scm.com/)  
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 📥 Passo 1 - Clonar o repositório  
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Abra o **Prompt de Comando** ou o **Git Bash** e rode:  
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```bash
+git clone https://github.com/matheushsouto/LaravelGuairaca.git
+cd LaravelGuairaca
+```
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## ⚙️ Passo 2 - Instalar as dependências do projeto  
 
-### Premium Partners
+### 2.1 - Dependências PHP  
+```bash
+composer install
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 2.2 - Dependências JavaScript  
+```bash
+npm install
+```
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 📄 Passo 3 - Configuração do ambiente  
 
-## Code of Conduct
+1. Copie o arquivo de exemplo `.env` para `.env`:  
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+   ```bash
+   copy .env.example .env
+   ```
+   (No **Git Bash**, use `cp .env.example .env`)  
 
-## Security Vulnerabilities
+2. Gere a chave da aplicação:  
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+   ```bash
+   php artisan key:generate
+   ```
 
-## License
+3. Configure o banco de dados no arquivo `.env`. Procure e edite estas linhas:  
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=laravelguairaca
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
+   > ⚠️ No XAMPP, o usuário padrão é **root** e a senha normalmente fica **em branco**.  
+
+4. Crie o banco de dados no **phpMyAdmin**:  
+   - Acesse [http://localhost/phpmyadmin](http://localhost/phpmyadmin)  
+   - Clique em **Novo** → Digite `laravelguairaca` → Clique em **Criar**  
+
+5. Execute as migrations (e seeders, se existirem):  
+
+   ```bash
+   php artisan migrate --seed
+   ```
+
+---
+
+## 🎨 Passo 4 - Compilar os arquivos CSS/JS (Laravel Mix)  
+
+Para carregar corretamente os estilos e scripts do projeto:  
+
+### Compilar para desenvolvimento  
+```bash
+npm run dev
+```
+
+### Compilar automaticamente enquanto edita  
+```bash
+npm run watch
+```
+
+### Compilar para produção  
+```bash
+npm run prod
+```
+
+---
+
+## 🚀 Passo 5 - Rodar o projeto  
+
+### Usando o servidor embutido do Laravel  
+```bash
+php artisan serve
+```
+
+Depois abra no navegador:  
+👉 [http://127.0.0.1:8000](http://127.0.0.1:8000)  
+
+---
+
+## 👤 Login e Registro  
+
+O projeto já vem configurado com **sistema de autenticação (Login e Cadastro)**.  
+
+- Clique em **Registrar** para criar um novo usuário.  
+- Depois faça **login** normalmente.  
+
+---
+
+## 🛠️ Comandos úteis do Laravel  
+
+- Limpar cache de configuração:  
+  ```bash
+  php artisan config:clear
+  ```
+
+- Limpar cache de rotas:  
+  ```bash
+  php artisan route:clear
+  ```
+
+- Limpar cache de views:  
+  ```bash
+  php artisan view:clear
+  ```
+
+---
+
+## ✅ Conclusão  
+
+Seguindo esse passo a passo, você terá o projeto **LaravelGuairaca** rodando no seu computador com **XAMPP** 🎉.  
+
+Se algo não funcionar, verifique:  
+- Versão do PHP (precisa ser 8.2 ou superior)  
+- Se o **Composer** e o **Node.js** estão instalados corretamente  
+- Se o banco `laravelguairaca` foi criado no phpMyAdmin  
+- Se rodou os comandos `composer install`, `npm install` e `php artisan migrate --seed`  
+
+---
