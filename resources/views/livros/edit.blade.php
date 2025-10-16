@@ -52,7 +52,7 @@
                             text-gray-700 dark:text-gray-300">
                                 Ano publicacao:
                             </label>
-                            <input type="text" name="ano_publicacao" id="ano_publicacao"
+                            <input type="date" name="ano_publicacao" id="ano_publicacao"
                                 class="form-input mt-1 block w-full" value="{{ $livro->ano_publicacao }}" required>
                         </div>
                         <button type="submit" class="bg-blue-500 hover:bg-blue-700

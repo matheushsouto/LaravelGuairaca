@@ -56,7 +56,7 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                                @foreach ($livros as $livro )
+                                @forelse ($livros as $livro )
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap">{{ $livro->titulo }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap">{{ $livro->autor }}</td>
@@ -85,7 +85,7 @@
                                             Nenhum livro encontrado
                                         </td>
                                     </tr>
-                                @endforeach
+                                @endforelse
                             </tbody>
                         </table>
                         <!-- Exibe os links de paginação -->
